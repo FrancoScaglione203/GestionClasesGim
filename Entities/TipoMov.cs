@@ -6,8 +6,8 @@ namespace GestionClasesGim.Entities
     {
         [Column("tipoMov_id")]
         public int Id { get; set; }
-        [Column("tipoMov_nombre")]
-        public string Nombre { get; set; }
+        [Column("tipoMov_descripcion")]
+        public string Descripcion { get; set; }
         [Column("tipoMov_activo")]
         public bool Activo { get; set; }
     }
