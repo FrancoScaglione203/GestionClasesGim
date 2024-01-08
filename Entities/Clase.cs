@@ -10,7 +10,7 @@ namespace GestionClasesGim.Entities
         [Required]
         [Column("clase_nombre", TypeName = "VARCHAR(50)")]
         public string Nombre { get; set; }
-        [Column("clase_fechahorario", TypeName = "datetime3")]
+        [Column("clase_fechahorario")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime FechaHorario { get; set; }
         [Required]

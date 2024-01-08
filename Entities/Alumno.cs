@@ -7,6 +7,6 @@ namespace GestionClasesGim.Entities
     {
         [Column("alumno_fechainscripcion", TypeName = "datetime2")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yy}", ApplyFormatInEditMode = true)]
-        public DateTime FechaInscripcion { get; set; }
+        public DateTime? FechaInscripcion { get; set; }
     }
 }
