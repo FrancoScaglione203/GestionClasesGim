@@ -1,4 +1,5 @@
 using GestionClasesGim.DataAccess;
+using GestionClasesGim.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace GestionClasesGim
@@ -19,6 +20,8 @@ namespace GestionClasesGim
             {
                 options.UseSqlServer("name=defaultConnection");
             });
+
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWorkService>();
 
             var app = builder.Build();
 
