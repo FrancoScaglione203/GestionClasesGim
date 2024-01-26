@@ -9,6 +9,7 @@ namespace GestionClasesGim.DataAccess
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
+        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Alumno> Alumnos { get; set; }
         public DbSet<Clase> Clases { get; set; }
         public DbSet<Historial> Historiales { get; set; }
@@ -19,6 +20,7 @@ namespace GestionClasesGim.DataAccess
         {
             var seeders = new List<IEntitySeeder>
             {
+                new AlumnoSeeder(),
                 new RoleSeeder(),
                 new TipoMovSeeder(),
                 new UsuarioSeeder(),

@@ -1,4 +1,5 @@
 ﻿using GestionClasesGim.Entities;
+using GestionClasesGim.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace GestionClasesGim.DataAccess.DataBaseSeeding
@@ -12,7 +13,7 @@ namespace GestionClasesGim.DataAccess.DataBaseSeeding
                 {
                     Id = 1,
                     Dni = 41826520,
-                    Clave = "1234", //DESPUES ENCRIPTARLA
+                    Clave = PasswordEncryptHelper.EncryptPassword("1234", 41826520),
                     Nombre = "Franco",
                     Apellido = "Scaglione",
                     RoleId = 1,

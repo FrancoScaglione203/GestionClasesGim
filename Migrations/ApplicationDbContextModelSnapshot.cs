@@ -214,7 +214,7 @@ namespace GestionClasesGim.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Usuario");
+                    b.ToTable("Usuarios");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Usuario");
 
@@ -224,7 +224,7 @@ namespace GestionClasesGim.Migrations
                             Id = 1,
                             Activo = true,
                             Apellido = "Scaglione",
-                            Clave = "1234",
+                            Clave = "caf2283ef018112cc755da6f4452473bd8ffce41baf2e685c0583f769da63eb5",
                             Dni = 41826520,
                             Nombre = "Franco",
                             RoleId = 1
@@ -240,6 +240,19 @@ namespace GestionClasesGim.Migrations
                         .HasColumnName("alumno_fechainscripcion");
 
                     b.HasDiscriminator().HasValue("Alumno");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            Activo = true,
+                            Apellido = "Avila",
+                            Clave = "57bf859ec80d6c0d016be06a0e9694684d53951db5f5e18f72d4e59ee1ac8096",
+                            Dni = 20587469,
+                            Nombre = "Maria Luz",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2024, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("GestionClasesGim.Entities.Historial", b =>

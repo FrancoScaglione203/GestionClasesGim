@@ -56,7 +56,7 @@ namespace GestionClasesGim.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usuario",
+                name: "Usuarios",
                 columns: table => new
                 {
                     usuario_id = table.Column<int>(type: "int", nullable: false)
@@ -72,9 +72,9 @@ namespace GestionClasesGim.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuario", x => x.usuario_id);
+                    table.PrimaryKey("PK_Usuarios", x => x.usuario_id);
                     table.ForeignKey(
-                        name: "FK_Usuario_Roles_role_id",
+                        name: "FK_Usuarios_Roles_role_id",
                         column: x => x.role_id,
                         principalTable: "Roles",
                         principalColumn: "role_id",
@@ -107,9 +107,9 @@ namespace GestionClasesGim.Migrations
                         principalColumn: "tipoMov_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Historiales_Usuario_usuario_id",
+                        name: "FK_Historiales_Usuarios_usuario_id",
                         column: x => x.usuario_id,
-                        principalTable: "Usuario",
+                        principalTable: "Usuarios",
                         principalColumn: "usuario_id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -133,9 +133,14 @@ namespace GestionClasesGim.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Usuario",
+                table: "Usuarios",
+                columns: new[] { "usuario_id", "usuario_activo", "usuario_apellido", "usuario_clave", "Discriminator", "usuario_dni", "alumno_fechainscripcion", "usuario_nombre", "role_id" },
+                values: new object[] { 2, true, "Avila", "57bf859ec80d6c0d016be06a0e9694684d53951db5f5e18f72d4e59ee1ac8096", "Alumno", 20587469, new DateTime(2024, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Maria Luz", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
                 columns: new[] { "usuario_id", "usuario_activo", "usuario_apellido", "usuario_clave", "Discriminator", "usuario_dni", "usuario_nombre", "role_id" },
-                values: new object[] { 1, true, "Scaglione", "1234", "Usuario", 41826520, "Franco", 1 });
+                values: new object[] { 1, true, "Scaglione", "caf2283ef018112cc755da6f4452473bd8ffce41baf2e685c0583f769da63eb5", "Usuario", 41826520, "Franco", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Historiales_clase_id",
@@ -153,8 +158,8 @@ namespace GestionClasesGim.Migrations
                 column: "usuario_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Usuario_role_id",
-                table: "Usuario",
+                name: "IX_Usuarios_role_id",
+                table: "Usuarios",
                 column: "role_id");
         }
 
@@ -170,7 +175,7 @@ namespace GestionClasesGim.Migrations
                 name: "TipoMovs");
 
             migrationBuilder.DropTable(
-                name: "Usuario");
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Roles");
