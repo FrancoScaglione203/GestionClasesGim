@@ -1,11 +1,29 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
+using GestionClasesGim.DTOs;
+using GestionClasesGim.Helpers;
 
 namespace GestionClasesGim.Entities
 {
     public class Usuario
     {
+
+        public Usuario(UsuarioDto dto)
+        {
+            Nombre = dto.Nombre;
+            Apellido = dto.Apellido;
+            Dni = dto.Dni;
+            RoleId = dto.RoleId;
+            Clave = PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Dni); //Despues agregar propiedad cuil
+            Activo = true;
+        }
+
+        public Usuario()
+        {
+
+        }
+
         [Key]
         [Column("usuario_id")]
         public int Id { get; set; }
