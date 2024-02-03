@@ -11,17 +11,29 @@ namespace GestionClasesGim.Entities
 
         public Usuario(UsuarioDto dto)
         {
+            Id = dto.Id;
             Nombre = dto.Nombre;
             Apellido = dto.Apellido;
             Dni = dto.Dni;
             RoleId = dto.RoleId;
-            Clave = PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Dni); //Despues agregar propiedad cuil
+            Clave = PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Dni); 
             Activo = true;
         }
 
         public Usuario()
         {
 
+        }
+
+        public Usuario(UsuarioDto dto, int id)
+        {
+            Id = id;
+            Nombre = dto.Nombre;
+            Apellido = dto.Apellido;
+            Dni = dto.Dni;
+            RoleId = dto.RoleId;
+            Clave = PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Dni); 
+            Activo = true;
         }
 
         [Key]

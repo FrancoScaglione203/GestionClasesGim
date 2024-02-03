@@ -1,5 +1,6 @@
 ﻿using GestionClasesGim.DTOs;
 using GestionClasesGim.Entities;
+using GestionClasesGim.Infraestructure;
 using GestionClasesGim.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -43,13 +44,13 @@ namespace GestionClasesGim.Controllers
         [Route("Agregar")]
         public async Task<IActionResult> Agregar(AlumnoDto dto)
         {
-            //if (await _unitOfWork.UsuarioRepository.UsuarioEx(dto.Cuil)) return Conflict($"Ya existe un usuario registrado con la descripcion:{dto.Cuil}");
+            if (await _unitOfWork.UsuarioRepository.UsuarioEx(dto.Dni)) return ResponseFactory.CreateErrorResponse(409, $"Ya existe un usuario registrado con el dni {dto.Dni}");
             var alumno = new Alumno(dto);
 
             await _unitOfWork.AlumnoRepository.Insert(alumno);
             await _unitOfWork.Complete();
 
-            return Ok("Alumno registrado con éxito!");
+            return ResponseFactory.CreateSuccessResponse(201, "Alumno registrado con éxito!");
         }
     }
 }
