@@ -1,8 +1,11 @@
 ﻿using GestionClasesGim.DTOs;
 using GestionClasesGim.Entities;
+using GestionClasesGim.Infraestructure;
 using GestionClasesGim.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace GestionClasesGim.Controllers
 {
@@ -26,7 +29,7 @@ namespace GestionClasesGim.Controllers
         [Authorize]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetAll()
         {
-            var usuarios = await _unitOfWork.UsuarioRepository.GetAll();
+            var usuarios = await _unitOfWork.UsuarioRepository.GetAllActivos();
 
             return usuarios;
         }
@@ -41,13 +44,64 @@ namespace GestionClasesGim.Controllers
         [Route("Agregar")]
         public async Task<IActionResult> Agregar(UsuarioDto dto)
         {
-            //if (await _unitOfWork.UsuarioRepository.UsuarioEx(dto.Cuil)) return Conflict($"Ya existe un usuario registrado con la descripcion:{dto.Cuil}");
+            if (await _unitOfWork.UsuarioRepository.UsuarioEx(dto.Dni)) return ResponseFactory.CreateErrorResponse(409,$"Ya existe un usuario registrado con el dni {dto.Dni}");
             var usuario = new Usuario(dto);
 
             await _unitOfWork.UsuarioRepository.Insert(usuario);
             await _unitOfWork.Complete();
 
-            return Ok("Usuario registrado con éxito!");
+            return ResponseFactory.CreateSuccessResponse(201, "Usuario registrado con éxito!");
         }
+
+        /// <summary>
+        /// Actualiza el servicio seleccionado por id por el UsuarioDto que se envia
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>
+        /// <returns>Retorna 200 si se actualizo con exito o 500 si ingresaron id invalido</returns>
+        //[Authorize(Policy = "Admin")]
+        [Authorize]
+        [HttpPut("Editar")]
+        public async Task<IActionResult> Update([FromQuery] int dni, [FromBody] UsuarioDto dto)
+        {
+            var usuario = await _unitOfWork.UsuarioRepository.GetByDni(dni);
+            int id = usuario.Id;
+            var result = await _unitOfWork.UsuarioRepository.Update(new Usuario(dto, id));
+            if (!result)
+            {
+                return ResponseFactory.CreateErrorResponse(500, "No se pudo actualizar el usuario");
+            }
+            else
+            {
+                await _unitOfWork.Complete();
+                return ResponseFactory.CreateSuccessResponse(200, "Actualizado");
+            }
+
+        }
+
+        /// <summary>
+        /// Cambia a false el estado de la propiedad Activo del usuario seleccionado por id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Retorna 200 si se modifico con exito o 500 si hubo un error</returns>
+        [Authorize]
+        [HttpPut("DeleteLogico")]
+        public async Task<IActionResult> DeleteLogico([FromQuery] int dni)
+        {
+            var usuario = await _unitOfWork.UsuarioRepository.GetByDni(dni);
+            int id = usuario.Id;
+            var result = await _unitOfWork.UsuarioRepository.DeleteLogico(id);
+            if (!result)
+            {
+                return ResponseFactory.CreateErrorResponse(500, "No se pudo eliminar el usuario");
+            }
+            else
+            {
+                await _unitOfWork.Complete();
+                return ResponseFactory.CreateSuccessResponse(200, "Eliminado");
+            }
+
+        }
+
     }
 }
