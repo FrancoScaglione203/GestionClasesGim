@@ -14,9 +14,21 @@ namespace GestionClasesGim.Entities
             Apellido = dto.Apellido;
             Dni = dto.Dni;
             RoleId = dto.RoleId;
-            Clave = PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Dni); //Despues agregar propiedad cuil
+            Clave = PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Dni); 
             Activo = true;
             FechaInscripcion = dto.FechaInscripcion;
+        }
+
+        public Alumno(AlumnoDto dto, int id)
+        {
+            Id = id;
+            Nombre = dto.Nombre;
+            Apellido = dto.Apellido;
+            Dni = dto.Dni;
+            RoleId = dto.RoleId;
+            Clave = PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Dni);
+            FechaInscripcion = dto.FechaInscripcion;
+            Activo = true;
         }
 
         public Alumno()

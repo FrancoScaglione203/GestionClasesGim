@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestionClasesGim.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240203142333_TrabajoProgramacion3")]
+    [Migration("20240218195637_TrabajoProgramacion3")]
     partial class TrabajoProgramacion3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

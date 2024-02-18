@@ -33,6 +33,22 @@ namespace GestionClasesGim.Controllers
         }
 
 
+        /// <summary>
+        /// Devuelve todos los alumnos
+        /// </summary>
+        /// <returns>Retorna lista de clase Alumno</returns>
+        //[Authorize(Policy = "AdminConsultor")]
+        [HttpGet]
+        [Route("AlumnosxClase")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<Alumno>>> GetAlumnosByIdClase([FromQuery] int idClase)
+        {
+            var alumnos = await _unitOfWork.AlumnoRepository.GetAllByIdClase(idClase);
+
+            return alumnos;
+        }
+
+
 
         /// <summary>
         /// Agrega un Alumno a la DB
@@ -51,6 +67,55 @@ namespace GestionClasesGim.Controllers
             await _unitOfWork.Complete();
 
             return ResponseFactory.CreateSuccessResponse(201, "Alumno registrado con éxito!");
+        }
+
+
+        /// <summary>
+        /// Actualiza el servicio seleccionado por id por el UsuarioDto que se envia
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>
+        /// <returns>Retorna 200 si se actualizo con exito o 500 si ingresaron id invalido</returns>
+        //[Authorize(Policy = "Admin")]
+        [Authorize]
+        [HttpPut("Editar")]
+        public async Task<IActionResult> Update([FromQuery] int id, [FromBody] AlumnoDto dto)
+        {
+
+            var result = await _unitOfWork.AlumnoRepository.Update(new Alumno(dto, id));
+            if (!result)
+            {
+                return ResponseFactory.CreateErrorResponse(500, "No se pudo actualizar el alumno");
+            }
+            else
+            {
+                await _unitOfWork.Complete();
+                return ResponseFactory.CreateSuccessResponse(200, "Actualizado");
+            }
+
+        }
+
+
+        /// <summary>
+        /// Cambia a false el estado de la propiedad Activo del usuario seleccionado por id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Retorna 200 si se modifico con exito o 500 si hubo un error</returns>
+        [Authorize]
+        [HttpPut("DeleteLogico")]
+        public async Task<IActionResult> DeleteLogico([FromQuery] int id)
+        {
+            var result = await _unitOfWork.AlumnoRepository.DeleteLogico(id);
+            if (!result)
+            {
+                return ResponseFactory.CreateErrorResponse(500, "No se pudo eliminar el alumno");
+            }
+            else
+            {
+                await _unitOfWork.Complete();
+                return ResponseFactory.CreateSuccessResponse(200, "Eliminado");
+            }
+
         }
     }
 }
