@@ -8,7 +8,7 @@ namespace GestionClasesGim.Helpers
 {
     public class TokenJwtHelper
     {
-        private IConfiguration _configuration; //Permite traer la key de appsettings atraves de inyeccion de dependencia en una configuracion del program.cs
+        private IConfiguration _configuration; //Permite traer la key de appsettings atraves de inyeccion del program.cs
         public TokenJwtHelper(IConfiguration configuration)
         {
 
@@ -20,7 +20,7 @@ namespace GestionClasesGim.Helpers
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns>El token JWT generado como una cadena.</returns>
-        public string GenerateToken(Usuario usuario) //Ver que pasa si cambio la clase por un dto
+        public string GenerateToken(Usuario usuario) 
         {
             var claims = new[]
             {

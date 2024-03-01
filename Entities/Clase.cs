@@ -15,6 +15,7 @@ namespace GestionClasesGim.Entities
             FechaHorario = dto.FechaHorario;
             CapacidadMax = dto.CapacidadMax;
             Cupos = dto.Cupos;
+            imagenUrl = dto.imagenUrl;
             Activo = true;
         }
 
@@ -25,6 +26,7 @@ namespace GestionClasesGim.Entities
             FechaHorario = dto.FechaHorario;
             CapacidadMax = dto.CapacidadMax;
             Cupos = dto.Cupos;
+            imagenUrl = dto.imagenUrl;
             Activo = true;
         }
 
@@ -47,6 +49,9 @@ namespace GestionClasesGim.Entities
         [Required]
         [Column("clase_cupos")]
         public int Cupos { get; set; }
+        [Required]
+        [Column("clase_imagenUrl", TypeName = "VARCHAR(5000)")]
+        public string? imagenUrl { get; set; }
         [Required]
         [Column("clase_activo")]
         public bool Activo { get; set; }

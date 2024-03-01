@@ -34,6 +34,8 @@ namespace GestionClasesGim.Controllers
             return usuarios;
         }
 
+     
+
         /// <summary>
         /// Agrega un Usuario a la DB
         /// </summary>
@@ -54,9 +56,9 @@ namespace GestionClasesGim.Controllers
         }
 
         /// <summary>
-        /// Actualiza el servicio seleccionado por id por el UsuarioDto que se envia
+        /// Actualiza usuario seleccionado por dni por el UsuarioDto que se envia
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="dni"></param>
         /// <param name="dto"></param>
         /// <returns>Retorna 200 si se actualizo con exito o 500 si ingresaron id invalido</returns>
         //[Authorize(Policy = "Admin")]
@@ -80,9 +82,9 @@ namespace GestionClasesGim.Controllers
         }
 
         /// <summary>
-        /// Cambia a false el estado de la propiedad Activo del usuario seleccionado por id
+        /// Cambia a false el estado de la propiedad Activo del usuario seleccionado por dni
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="dni"></param>
         /// <returns>Retorna 200 si se modifico con exito o 500 si hubo un error</returns>
         [Authorize]
         [HttpPut("DeleteLogico")]
