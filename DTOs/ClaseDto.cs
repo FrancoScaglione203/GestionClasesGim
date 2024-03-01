@@ -9,6 +9,7 @@ namespace GestionClasesGim.DTOs
         public DateTime FechaHorario { get; set; }
         public int CapacidadMax { get; set; }
         public int Cupos { get; set; }
+        public string imagenUrl { get; set; }
         public bool Activo { get; set; }
     }
 }

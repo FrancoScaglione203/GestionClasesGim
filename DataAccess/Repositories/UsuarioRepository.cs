@@ -12,11 +12,21 @@ namespace GestionClasesGim.DataAccess.Repositories
         {
         }
 
+        /// <summary>
+        /// Valida si dni y calve coinciden con DB
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public async Task<Usuario?> AuthenticateCredentials(AuthenticateDto dto)
         {
             return await _context.Usuarios.Include(x => x.Role).SingleOrDefaultAsync(x => x.Dni == dto.Dni && x.Clave == PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Dni));
         }
 
+        /// <summary>
+        /// Valida si ya existe usuario con dni ingresado por parametro
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <returns></returns>
         public async Task<bool> UsuarioEx(long dni)
         {
             return await _context.Usuarios.AnyAsync(x => x.Dni == dni);
@@ -29,9 +39,9 @@ namespace GestionClasesGim.DataAccess.Repositories
         }
 
         /// <summary>
-        /// Devuelve usuario sin clave por seguridad
+        /// Devuelve usuario con el dni ingresado por parametro
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="dni"></param>
         /// <returns>Retorna usuario con la clave tapada por seguridad</returns>
         public async Task<Usuario> GetByDni(int dni)
         {
@@ -77,6 +87,12 @@ namespace GestionClasesGim.DataAccess.Repositories
             return true;
         }
 
+
+        /// <summary>
+        /// Cambia Active a false del usuario con el id ingresado por parametro
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<bool> DeleteLogico(int id)
         {
             var usuario = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
@@ -88,6 +104,11 @@ namespace GestionClasesGim.DataAccess.Repositories
             return true;
         }
 
+
+        /// <summary>
+        /// Retorna lista de Usuario con active=true
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<Usuario>> GetAllActivos()
         {
             var activeUsuarios = await _context.Usuarios.Where(x => x.Activo == true).ToListAsync();

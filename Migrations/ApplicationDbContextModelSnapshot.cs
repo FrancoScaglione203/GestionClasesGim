@@ -52,6 +52,11 @@ namespace GestionClasesGim.Migrations
                         .HasColumnType("VARCHAR(50)")
                         .HasColumnName("clase_nombre");
 
+                    b.Property<string>("imagenUrl")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(5000)")
+                        .HasColumnName("clase_imagenUrl");
+
                     b.HasKey("Id");
 
                     b.ToTable("Clases");
@@ -239,6 +244,11 @@ namespace GestionClasesGim.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("alumno_fechainscripcion");
 
+                    b.Property<string>("imagenUrl")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(5000)")
+                        .HasColumnName("alumno_imagenUrl");
+
                     b.HasDiscriminator().HasValue("Alumno");
 
                     b.HasData(
@@ -251,7 +261,164 @@ namespace GestionClasesGim.Migrations
                             Dni = 20587469,
                             Nombre = "Maria Luz",
                             RoleId = 2,
-                            FechaInscripcion = new DateTime(2024, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            FechaInscripcion = new DateTime(2024, 1, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Activo = true,
+                            Apellido = "Scaglione",
+                            Clave = "92aa37811a86fb7e8aec77e26361f1983ce838940a5f3736fc083fa2bf247dc3",
+                            Dni = 52467894,
+                            Nombre = "Natalia",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2024, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Activo = true,
+                            Apellido = "Scaglione",
+                            Clave = "c808983b806db5d535f1b84ba36510dd8eb6f68d4e31a136143f0c488648c6a9",
+                            Dni = 97852654,
+                            Nombre = "Vicente",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2022, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Activo = true,
+                            Apellido = "Barisano",
+                            Clave = "c808983b806db5d535f1b84ba36510dd8eb6f68d4e31a136143f0c488648c6a9",
+                            Dni = 23451474,
+                            Nombre = "Facundo",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2024, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Activo = true,
+                            Apellido = "Croce",
+                            Clave = "ade1bfc7f862a3e28ca044e8c9e32103ea452b62946ae44ecd6076095f2e322d",
+                            Dni = 56789845,
+                            Nombre = "Eliana",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2024, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Activo = true,
+                            Apellido = "Italia",
+                            Clave = "ade1bfc7f862a3e28ca044e8c9e32103ea452b62946ae44ecd6076095f2e322d",
+                            Dni = 32347841,
+                            Nombre = "Jaqueline",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2022, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Activo = true,
+                            Apellido = "Lozada",
+                            Clave = "d167660fe711956a00d3dca7b49b5c95cfd2d40c980b3dadf1af31ba0915d799",
+                            Dni = 87456548,
+                            Nombre = "Jony",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2024, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Activo = true,
+                            Apellido = "Acosta",
+                            Clave = "cb096c1ca77084ae25d67db3826eba376c48cf53aa308e30ccf52179628f88e8",
+                            Dni = 65986563,
+                            Nombre = "Claudio",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2024, 1, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Activo = true,
+                            Apellido = "Garcia",
+                            Clave = "ade1bfc7f862a3e28ca044e8c9e32103ea452b62946ae44ecd6076095f2e322d",
+                            Dni = 78981232,
+                            Nombre = "Kim",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2024, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Activo = true,
+                            Apellido = "Vera",
+                            Clave = "57bf859ec80d6c0d016be06a0e9694684d53951db5f5e18f72d4e59ee1ac8096",
+                            Dni = 56564564,
+                            Nombre = "Ezequiel",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2022, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Activo = true,
+                            Apellido = "Leoni",
+                            Clave = "c808983b806db5d535f1b84ba36510dd8eb6f68d4e31a136143f0c488648c6a9",
+                            Dni = 62616344,
+                            Nombre = "Nicolas",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2024, 1, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Activo = true,
+                            Apellido = "Del Olio",
+                            Clave = "92aa37811a86fb7e8aec77e26361f1983ce838940a5f3736fc083fa2bf247dc3",
+                            Dni = 56111243,
+                            Nombre = "Marina",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2024, 4, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Activo = true,
+                            Apellido = "Ballarini",
+                            Clave = "08e9366a7aa060344c3c9eb571fb3d49157350b90c89c6905e83767961a5d714",
+                            Dni = 64445121,
+                            Nombre = "Manuel",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2022, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Activo = true,
+                            Apellido = "Solimano",
+                            Clave = "57bf859ec80d6c0d016be06a0e9694684d53951db5f5e18f72d4e59ee1ac8096",
+                            Dni = 33265561,
+                            Nombre = "Gabriela",
+                            RoleId = 2,
+                            FechaInscripcion = new DateTime(2022, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            imagenUrl = " "
                         });
                 });
 

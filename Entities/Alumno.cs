@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using GestionClasesGim.DTOs;
 using GestionClasesGim.Helpers;
+using System.Xml;
 
 namespace GestionClasesGim.Entities
 {
@@ -14,8 +15,9 @@ namespace GestionClasesGim.Entities
             Apellido = dto.Apellido;
             Dni = dto.Dni;
             RoleId = dto.RoleId;
-            Clave = PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Dni); 
+            Clave = PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Dni);
             Activo = true;
+            imagenUrl = dto.imagenUrl;
             FechaInscripcion = dto.FechaInscripcion;
         }
 
@@ -28,6 +30,7 @@ namespace GestionClasesGim.Entities
             RoleId = dto.RoleId;
             Clave = PasswordEncryptHelper.EncryptPassword(dto.Clave, dto.Dni);
             FechaInscripcion = dto.FechaInscripcion;
+            imagenUrl = dto.imagenUrl;
             Activo = true;
         }
 
@@ -39,5 +42,8 @@ namespace GestionClasesGim.Entities
         [Column("alumno_fechainscripcion", TypeName = "datetime2")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yy}", ApplyFormatInEditMode = true)]
         public DateTime? FechaInscripcion { get; set; }
+        [Required]
+        [Column("alumno_imagenUrl", TypeName = "VARCHAR(5000)")]
+        public string? imagenUrl { get; set; }
     }
 }

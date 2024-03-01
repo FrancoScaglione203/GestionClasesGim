@@ -8,6 +8,7 @@
         public int RoleId { get; set; }
         public string Clave { get; set; }
         public bool Activo { get; set; }
+        public string imagenUrl { get; set; }
         public DateTime FechaInscripcion { get; set; }
     }
 }

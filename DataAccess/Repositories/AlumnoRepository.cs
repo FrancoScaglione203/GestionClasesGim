@@ -25,12 +25,18 @@ namespace GestionClasesGim.DataAccess.Repositories
             alumno.RoleId = updateAlumno.RoleId;
             alumno.Dni = updateAlumno.Dni;
             alumno.Clave = updateAlumno.Clave;
+            alumno.imagenUrl = updateAlumno.imagenUrl;
             alumno.Activo = updateAlumno.Activo;
 
             _context.Alumnos.Update(alumno);
             return true;
         }
 
+        /// <summary>
+        /// Cambia Activo=false del Alumno con el id enviado por parametro
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<bool> DeleteLogico(int id)
         {
             var alumno = await _context.Alumnos.FirstOrDefaultAsync(x => x.Id == id);
@@ -42,6 +48,11 @@ namespace GestionClasesGim.DataAccess.Repositories
             return true;
         }
 
+        /// <summary>
+        /// Retorna lista de Alumnos que se inscribieron en la clase con el id ingresado por parametro
+        /// </summary>
+        /// <param name="idClase"></param>
+        /// <returns></returns>
         public async Task<List<Alumno>> GetAllByIdClase(int idClase) 
         {
             var alumnos = await _context.Alumnos.Where(x => x.Activo == true).ToListAsync();
@@ -78,6 +89,47 @@ namespace GestionClasesGim.DataAccess.Repositories
 
             return listaAlumnos;
 
+        }
+
+        /// <summary>
+        /// Retorna Alumno con el dni ingresado por parametro
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <returns></returns>
+        public async Task<Alumno> GetByDni(int dni)
+        {
+            Alumno alumnoreturn = new Alumno();
+            var alumno = await _context.Alumnos.FirstOrDefaultAsync(x => x.Dni == dni);
+
+
+            if (alumno == null)
+            {
+                return alumno;
+            }
+            else
+            {
+                alumnoreturn.Id = alumno.Id;
+                alumnoreturn.Nombre = alumno.Nombre;
+                alumnoreturn.Dni = alumno.Dni;
+                alumnoreturn.Apellido = alumno.Apellido;
+                alumnoreturn.RoleId = alumno.RoleId;
+                alumnoreturn.Clave = alumno.Clave;
+                alumnoreturn.FechaInscripcion = alumno.FechaInscripcion;
+                alumnoreturn.imagenUrl = alumno.imagenUrl;
+                alumnoreturn.Activo = alumno.Activo;
+            }
+            return alumnoreturn;
+        }
+
+
+        /// <summary>
+        /// Retorna lista de alumnos con Active=true
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Alumno>> GetAllActivos()
+        {
+            var activeAlumnos = await _context.Alumnos.Where(x => x.Activo == true).ToListAsync();
+            return activeAlumnos;
         }
     }
 }

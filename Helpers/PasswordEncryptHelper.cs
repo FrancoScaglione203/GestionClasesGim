@@ -28,7 +28,7 @@ namespace GestionClasesGim.Helpers
         }
 
         /// <summary>
-        /// Método privado para generar un salt único basado en el cuil del usuario.
+        /// Método privado para generar un salt único basado en el dni del usuario.
         /// </summary>
         /// <param name="dni"></param>
         /// <returns>Una cadena que representa el salt generado.</returns>
